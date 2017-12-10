@@ -18,7 +18,7 @@ class MINOSFailed(Exception):
 
 def add_method(self, method, name=None):
     if name is None:
-        name = method.func_name
+        name = method.__name__
 
     setattr(self.__class__, name, method)
 
@@ -68,7 +68,7 @@ class MinuitMinimizer(LocalMinimizer):
         # NOTE: we use the internal_ versions of value, min_value and max_value because they don't have
         # units, and they are transformed to make the fit easier (for example in log scale)
 
-        for parameter_path, (value, delta, minimum, maximum) in self._internal_parameters.items():
+        for parameter_path, (value, delta, minimum, maximum) in list(self._internal_parameters.items()):
 
             current_name = self._parameter_name_to_minuit_name(parameter_path)
 
@@ -110,7 +110,7 @@ class MinuitMinimizer(LocalMinimizer):
         # Write and compile the code for such function
 
         code = 'def _f(self, %s):\n  return self.function(%s)' % (var_spelled_out, var_spelled_out)
-        exec code
+        exec(code)
 
         # Add the function just created as a method of the class
         # so it will be able to use the 'self' pointer
@@ -162,7 +162,7 @@ class MinuitMinimizer(LocalMinimizer):
 
         # Update also the internal iminuit dictionary
 
-        for k, par in self.parameters.items():
+        for k, par in list(self.parameters.items()):
 
             minuit_name = self._parameter_name_to_minuit_name(k)
 
@@ -194,7 +194,7 @@ class MinuitMinimizer(LocalMinimizer):
         """
 
         print("Last status:\n")
-        print(self._last_migrad_results[0])
+        print((self._last_migrad_results[0]))
         print("\n")
         # Print params to get some info about the failure
         self.minuit.print_param()
@@ -239,7 +239,7 @@ class MinuitMinimizer(LocalMinimizer):
 
             best_fit_values = []
 
-            for k, par in self.parameters.items():
+            for k, par in list(self.parameters.items()):
 
                 minuit_name = self._parameter_name_to_minuit_name(k)
 
@@ -304,7 +304,7 @@ class MinuitMinimizer(LocalMinimizer):
 
         errors = collections.OrderedDict()
 
-        for k, par in self.parameters.items():
+        for k, par in list(self.parameters.items()):
 
             minuit_name = self._parameter_name_to_minuit_name(k)
 

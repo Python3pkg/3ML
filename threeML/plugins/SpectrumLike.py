@@ -234,7 +234,7 @@ class SpectrumLike(PluginPrototype):
         if self._verbose:
 
             if self._background_plugin is not None:
-                print('Background modeled from plugin: %s' % self._background_plugin.name)
+                print(('Background modeled from plugin: %s' % self._background_plugin.name))
 
                 bkg_noise = self._background_plugin.observation_noise_model
 
@@ -245,8 +245,8 @@ class SpectrumLike(PluginPrototype):
 
 
             print("Auto-probed noise models:")
-            print("- observation: %s" % self.observation_noise_model)
-            print("- background: %s" % bkg_noise)
+            print(("- observation: %s" % self.observation_noise_model))
+            print(("- background: %s" % bkg_noise))
 
 
 
@@ -266,7 +266,7 @@ class SpectrumLike(PluginPrototype):
 
         if self._background_plugin is not None:
 
-            for par_name, parameter in self._background_plugin.likelihood_model.parameters.iteritems():
+            for par_name, parameter in self._background_plugin.likelihood_model.parameters.items():
 
 
                 # create a new parameters that is like the one from the background model
@@ -871,7 +871,7 @@ class SpectrumLike(PluginPrototype):
                 self._mask[idx[0]:idx[1] + 1] = True
 
                 if self._verbose:
-                    print("Range %s translates to channels %s-%s" % (arg, idx[0], idx[1]))
+                    print(("Range %s translates to channels %s-%s" % (arg, idx[0], idx[1])))
 
         # If you are just excluding channels
         if len(args) == 0:
@@ -909,10 +909,10 @@ class SpectrumLike(PluginPrototype):
                 self._mask[idx[0]:idx[1] + 1] = False
 
                 if self._verbose:
-                    print("Range %s translates to excluding channels %s-%s" % (arg, idx[0], idx[1]))
+                    print(("Range %s translates to excluding channels %s-%s" % (arg, idx[0], idx[1])))
 
         if self._verbose:
-            print("Now using %s channels out of %s" % (np.sum(self._mask), self._observed_spectrum.n_channels))
+            print(("Now using %s channels out of %s" % (np.sum(self._mask), self._observed_spectrum.n_channels)))
 
         # Apply the mask
         self._apply_mask_to_original_vectors()
@@ -931,7 +931,7 @@ class SpectrumLike(PluginPrototype):
                 # so we need to figure out which channels these are where excluded
 
                 deselected_channels = []
-                for i in xrange(self._observed_spectrum.n_channels):
+                for i in range(self._observed_spectrum.n_channels):
 
                     if self._observed_spectrum.quality.bad[i] and self._mask[i]:
                         deselected_channels.append(i)
@@ -1476,7 +1476,7 @@ class SpectrumLike(PluginPrototype):
                 self._current_back_count_errors, = self._rebinner.rebin_errors(self._back_count_errors)
 
         if self._verbose:
-            print("Now using %s bins" % self._rebinner.n_bins)
+            print(("Now using %s bins" % self._rebinner.n_bins))
 
     def remove_rebinning(self):
         """
@@ -2548,7 +2548,7 @@ class SpectrumLike(PluginPrototype):
 
         # obs['response'] = self._observed_spectrum.response_file
 
-        return pd.Series(data=obs, index=obs.keys())
+        return pd.Series(data=obs, index=list(obs.keys()))
 
     def get_number_of_data_points(self):
         """

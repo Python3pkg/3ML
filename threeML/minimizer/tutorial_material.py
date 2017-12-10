@@ -102,7 +102,7 @@ def plot_likelihood_function(jl, fig=None):
     # Let's have a look at the -log(L) by plotting it
 
     mus = np.arange(1, 100, 0.01)  # These are 1,2,3,4...99
-    _ = plt.plot(mus, map(jl.minus_log_like_profile, mus))
+    _ = plt.plot(mus, list(map(jl.minus_log_like_profile, mus)))
 
     _ = plt.xlabel(r"$\mu$")
     _ = plt.ylabel(r"$-\log{L(\mu)}$")
@@ -183,7 +183,7 @@ class CustomLikelihoodLike(PluginPrototype):
         """
 
         # Gather values
-        values = map(lambda x:x.value, self._free_parameters.values())
+        values = [x.value for x in list(self._free_parameters.values())]
 
         return -self._minus_log_l(*values)
 
@@ -194,7 +194,7 @@ class CustomLikelihoodLike(PluginPrototype):
         return 1
 
 
-class Simple(Function1D):
+class Simple(Function1D, metaclass=FunctionMeta):
     """
     description :
 
@@ -217,8 +217,6 @@ class Simple(Function1D):
             max : 100
 
         """
-
-    __metaclass__ = FunctionMeta
 
     def _setup(self):
 

@@ -60,7 +60,7 @@ def test_OGIP_response_against_xspec():
     # Test for various photon indexes
     for index in [-0.5, 0.0, 0.5, 1.5, 2.0, 3.0, 4.0]:
 
-        print("Processing index %s" % index)
+        print(("Processing index %s" % index))
 
         # First reset xspec
         xspec.AllData.clear()

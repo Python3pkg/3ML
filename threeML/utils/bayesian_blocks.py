@@ -305,7 +305,7 @@ def bayesian_blocks(tt, ttstart, ttstop, p0, bkg_integral_distribution=None):
 
     if (bkg_integral_distribution is not None):
 
-        final_edges = map(lambda x: lookup_table[x], edg)
+        final_edges = [lookup_table[x] for x in edg]
 
     else:
 
@@ -329,4 +329,4 @@ if __name__ == "__main__":
             f.write("%s\n" % (t))
 
     res = bayesian_blocks(tt, 0, 1000, 1e-3, None)
-    print res
+    print(res)

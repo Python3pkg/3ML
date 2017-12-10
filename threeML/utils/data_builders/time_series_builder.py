@@ -100,7 +100,7 @@ class TimeSeriesBuilder(object):
                 self._time_series.restore_fit(restore_poly_fit)
 
                 if verbose:
-                    print('Successfully restored fit from %s'%restore_poly_fit)
+                    print(('Successfully restored fit from %s'%restore_poly_fit))
 
                 # In theory this will automatically get the poly counts if a
                 # time interval already exists
@@ -503,7 +503,7 @@ class TimeSeriesBuilder(object):
 
         if self._verbose:
 
-            print('Created %d bins via %s'% (len(self._time_series.bins), method))
+            print(('Created %d bins via %s'% (len(self._time_series.bins), method)))
 
 
     def to_spectrumlike(self, from_bins=False, start=None, stop=None, interval_name='_interval'):
@@ -692,7 +692,7 @@ class TimeSeriesBuilder(object):
                                            mission=gbm_tte_file.mission,
                                            verbose=verbose)
 
-        if isinstance(rsp_file, str) or isinstance(rsp_file, unicode):
+        if isinstance(rsp_file, str) or isinstance(rsp_file, str):
 
             # we need to see if this is an RSP2
 
@@ -800,7 +800,7 @@ class TimeSeriesBuilder(object):
         # we need to see if this is an RSP2
 
 
-        if isinstance(rsp_file,str) or isinstance(rsp_file,unicode):
+        if isinstance(rsp_file,str) or isinstance(rsp_file,str):
 
 
             test = re.match('^.*\.rsp2$', rsp_file)

@@ -52,9 +52,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'The Multi-Mission Maximum Likelihood framework'
-copyright = u'2017, G.Vianello'
-author = u'G.Vianello'
+project = 'The Multi-Mission Maximum Likelihood framework'
+copyright = '2017, G.Vianello'
+author = 'G.Vianello'
 
 html_theme_options = {
     'navigation_depth': 4,
@@ -232,8 +232,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'TheMulti-MissionMaximumLikelihoodframework.tex', u'The Multi-Mission Maximum Likelihood framework Documentation',
-   u'G.Vianello', 'manual'),
+  (master_doc, 'TheMulti-MissionMaximumLikelihoodframework.tex', 'The Multi-Mission Maximum Likelihood framework Documentation',
+   'G.Vianello', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -262,7 +262,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'themulti-missionmaximumlikelihoodframework', u'The Multi-Mission Maximum Likelihood framework Documentation',
+    (master_doc, 'themulti-missionmaximumlikelihoodframework', 'The Multi-Mission Maximum Likelihood framework Documentation',
      [author], 1)
 ]
 
@@ -276,7 +276,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'TheMulti-MissionMaximumLikelihoodframework', u'The Multi-Mission Maximum Likelihood framework Documentation',
+  (master_doc, 'TheMulti-MissionMaximumLikelihoodframework', 'The Multi-Mission Maximum Likelihood framework Documentation',
    author, 'TheMulti-MissionMaximumLikelihoodframework', 'One line description of project.',
    'Miscellaneous'),
 ]

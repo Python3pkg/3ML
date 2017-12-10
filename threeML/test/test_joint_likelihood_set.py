@@ -65,6 +65,6 @@ def test_joint_likelihood_set_parallel():
 
         res = jlset.go(compute_covariance=False)
 
-    print res
+    print(res)
 
 

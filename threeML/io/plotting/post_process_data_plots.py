@@ -50,7 +50,7 @@ def display_spectrum_model_counts(analysis, data=(), **kwargs):
 
     if not data:
 
-        data_keys = analysis.data_list.keys()
+        data_keys = list(analysis.data_list.keys())
 
     else:
 
@@ -63,7 +63,7 @@ def display_spectrum_model_counts(analysis, data=(), **kwargs):
     for key in data_keys:
 
         # Make sure it is a valid key
-        if key in analysis.data_list.keys():
+        if key in list(analysis.data_list.keys()):
 
             if isinstance(analysis.data_list[key], threeML.plugins.SpectrumLike.SpectrumLike):
 
@@ -238,7 +238,7 @@ def display_spectrum_model_counts(analysis, data=(), **kwargs):
 def display_histogram_fit(analysis, data=(), **kwargs):
     if not data:
 
-        data_keys = analysis.data_list.keys()
+        data_keys = list(analysis.data_list.keys())
 
     else:
 
@@ -251,7 +251,7 @@ def display_histogram_fit(analysis, data=(), **kwargs):
     for key in data_keys:
 
         # Make sure it is a valid key
-        if key in analysis.data_list.keys():
+        if key in list(analysis.data_list.keys()):
 
             if isinstance(analysis.data_list[key], threeML.plugins.HistLike.HistLike):
 
@@ -283,8 +283,8 @@ def display_histogram_fit(analysis, data=(), **kwargs):
 
     # Default colors
 
-    data_colors = map(lambda x: data_cmap(x), np.linspace(0.0, 1.0, len(data_keys)))
-    model_colors = map(lambda x: model_cmap(x), np.linspace(0.0, 1.0, len(data_keys)))
+    data_colors = [data_cmap(x) for x in np.linspace(0.0, 1.0, len(data_keys))]
+    model_colors = [model_cmap(x) for x in np.linspace(0.0, 1.0, len(data_keys))]
 
     # Now override defaults according to the optional keywords, if present
 
@@ -299,11 +299,11 @@ def display_histogram_fit(analysis, data=(), **kwargs):
 
     if 'data_cmap' in kwargs:
         data_cmap = plt.get_cmap(kwargs.pop('data_cmap'))
-        data_colors = map(lambda x: data_cmap(x), np.linspace(0.0, 1.0, len(data_keys)))
+        data_colors = [data_cmap(x) for x in np.linspace(0.0, 1.0, len(data_keys))]
 
     if 'model_cmap' in kwargs:
         model_cmap = kwargs.pop('model_cmap')
-        model_colors = map(lambda x: model_cmap(x), np.linspace(0.0, 1.0, len(data_keys)))
+        model_colors = [model_cmap(x) for x in np.linspace(0.0, 1.0, len(data_keys))]
 
     if 'data_colors' in kwargs:
         data_colors = kwargs.pop('data_colors')
@@ -497,7 +497,7 @@ def display_photometry_model_magnitudes(analysis, data=(), **kwargs):
 
     if not data:
 
-        data_keys = analysis.data_list.keys()
+        data_keys = list(analysis.data_list.keys())
 
     else:
 
@@ -510,7 +510,7 @@ def display_photometry_model_magnitudes(analysis, data=(), **kwargs):
     for key in data_keys:
 
         # Make sure it is a valid key
-        if key in analysis.data_list.keys():
+        if key in list(analysis.data_list.keys()):
 
             if isinstance(analysis.data_list[key], threeML.plugins.PhotometryLike.PhotometryLike):
 

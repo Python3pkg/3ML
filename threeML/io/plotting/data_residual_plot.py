@@ -137,7 +137,7 @@ class ResidualPlot(object):
         :param color: the color of the model
         :return: None
         """
-        step_plot(np.asarray(zip(xmin, xmax)),
+        step_plot(np.asarray(list(zip(xmin, xmax))),
                   y / xwidth,
                   self._data_axis,
                   alpha=.8,

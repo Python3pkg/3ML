@@ -29,7 +29,7 @@ def internet_connection_is_active():
 
         except Exception as ex:
 
-            print(ex.message)
+            print((ex.message))
             return False
 
         else:
@@ -47,7 +47,7 @@ def internet_connection_is_active():
 
         except Exception as ex:
 
-            print(ex.message)
+            print((ex.message))
             return False
 
         else:

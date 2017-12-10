@@ -34,7 +34,7 @@ class AnalysisBuilder(object):
 
     @property
     def keys(self):
-        return self._shapes.keys()
+        return list(self._shapes.keys())
 
     def get_jl(self, key):
         assert key in self._shapes

@@ -20,7 +20,7 @@ class DictWithPrettyPrint(collections.OrderedDict):
 
     def _repr_pretty_(self, pp, cycle):
 
-        print(self.__str__())
+        print((self.__str__()))
 
     def _repr_html_(self):
 

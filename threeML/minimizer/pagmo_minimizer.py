@@ -18,7 +18,7 @@ class PAGMOWrapper(object):
         minima = []
         maxima = []
 
-        for param, (cur_value, cur_delta, cur_min, cur_max) in parameters.items():
+        for param, (cur_value, cur_delta, cur_min, cur_max) in list(parameters.items()):
 
             if cur_min is None or cur_max is None:
 
@@ -94,9 +94,9 @@ class PAGMOMinimizer(GlobalMinimizer):
         # Print some info
         print("\nPAGMO setup:")
         print("------------")
-        print("- Number of islands:            %i" % islands)
-        print("- Population size per island:   %i" % pop_size)
-        print("- Evolutions cycles per island: %i\n" % evolution_cycles)
+        print(("- Number of islands:            %i" % islands))
+        print(("- Population size per island:   %i" % pop_size))
+        print(("- Evolutions cycles per island: %i\n" % evolution_cycles))
 
         Npar = len(self._internal_parameters)
 
@@ -144,7 +144,7 @@ class PAGMOMinimizer(GlobalMinimizer):
 
             # Find best and worst islands
 
-            fOpts = np.array(map(lambda x:x[0], archi.get_champions_f()))
+            fOpts = np.array([x[0] for x in archi.get_champions_f()])
             xOpts = archi.get_champions_x()
 
         else:
@@ -183,8 +183,8 @@ class PAGMOMinimizer(GlobalMinimizer):
         # Some information
         print("\nSummary of evolution:")
         print("---------------------")
-        print("Best population has minimum %.3f" % (fOpt))
-        print("Worst population has minimum %.3f" % (fWorse))
+        print(("Best population has minimum %.3f" % (fOpt)))
+        print(("Worst population has minimum %.3f" % (fWorse)))
         print("")
 
         # Transform to numpy.array

@@ -18,7 +18,7 @@ class PyOptWrapper(object):
 
     def __call__(self, x):
 
-        new_args = map(lambda i: x[i], range(self._dimensions))
+        new_args = [x[i] for i in range(self._dimensions)]
 
         try:
 

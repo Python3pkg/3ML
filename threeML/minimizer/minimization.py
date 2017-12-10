@@ -84,7 +84,7 @@ class FunctionWrapper(object):
 
         for i, parameter_name in enumerate(self._fixed_parameters_names):
 
-            this_index = self._all_parameters.keys().index(parameter_name)
+            this_index = list(self._all_parameters.keys()).index(parameter_name)
 
             self._indexes_of_fixed_par[this_index] = True
 
@@ -191,10 +191,10 @@ class ProfileLikelihood(object):
             # parameters dictionary)
 
             param_1_name = self._fixed_parameters[0]
-            param_1_idx = self._all_parameters.keys().index(param_1_name)
+            param_1_idx = list(self._all_parameters.keys()).index(param_1_name)
 
             param_2_name = self._fixed_parameters[1]
-            param_2_idx = self._all_parameters.keys().index(param_2_name)
+            param_2_idx = list(self._all_parameters.keys()).index(param_2_name)
 
             # Fix steps if needed
             steps1 = self._transform_steps(param_1_name, steps1)
@@ -318,7 +318,7 @@ class _Minimization(object):
         valid_setup_keys = self._minimizer_type.valid_setup_keys
 
         # Check that the setup has been specified well
-        for key in setup_dict.keys():
+        for key in list(setup_dict.keys()):
 
             assert key in valid_setup_keys, "%s is not a valid setup parameter for this minimizer" % key
 
@@ -408,7 +408,7 @@ class Minimizer(object):
         self._function = function
         self._external_parameters = parameters
         self._internal_parameters = self._update_internal_parameter_dictionary()
-        self._Npar = len(self.parameters.keys())
+        self._Npar = len(list(self.parameters.keys()))
         self._verbosity = verbosity
 
         self._setup(setup_dict)
@@ -442,7 +442,7 @@ class Minimizer(object):
         # NOTE as well that as in the entire class here, the .parameters dictionary only contains free parameters,
         # as only free parameters are passed to the constructor of the minimizer
 
-        for k, par in self.parameters.items():
+        for k, par in list(self.parameters.items()):
 
             current_name = par.path
 
@@ -627,13 +627,13 @@ class Minimizer(object):
 
         for i in range(self.Npar):
 
-            name = self.parameters.keys()[i]
+            name = list(self.parameters.keys())[i]
 
             value = best_fit_values[i]
 
             # Set the parameter to the best fit value (sometimes the optimization happen in a different thread/node,
             # so we need to make sure that the parameter has the best fit value)
-            self.parameters.values()[i]._set_internal_value(value)
+            list(self.parameters.values())[i]._set_internal_value(value)
 
             if covariance_matrix is not None:
 
@@ -711,7 +711,7 @@ class Minimizer(object):
 
         best_fit_values = self._fit_results['value'].values
 
-        for parameter_name, best_fit_value in zip(self.parameters.keys(), best_fit_values):
+        for parameter_name, best_fit_value in zip(list(self.parameters.keys()), best_fit_values):
 
             self.parameters[parameter_name]._set_internal_value(best_fit_value)
 
@@ -732,8 +732,8 @@ class Minimizer(object):
         :return: the covariance matrix
         """
 
-        minima = map(lambda parameter:parameter.min_value, self.parameters.values())
-        maxima = map(lambda parameter: parameter.max_value, self.parameters.values())
+        minima = [parameter.min_value for parameter in list(self.parameters.values())]
+        maxima = [parameter.max_value for parameter in list(self.parameters.values())]
 
         # Check whether some of the minima or of the maxima are None. If they are, set them
         # to a value 1000 times smaller or larger respectively than the best fit.
@@ -899,7 +899,7 @@ class Minimizer(object):
                                          "computation." % (this_log_like, parameter_name, trial),
                                          BetterMinimumDuringProfiling)
 
-                    xs = map(lambda x:x.value, self.parameters.values())
+                    xs = [x.value for x in list(self.parameters.values())]
 
                     self._store_fit_results(xs, this_log_like, None)
 
@@ -986,7 +986,7 @@ class Minimizer(object):
 
         best_fit_values = self._fit_results['value']
 
-        for par_name, (negative_error, positive_error) in errors_dict.items():
+        for par_name, (negative_error, positive_error) in list(errors_dict.items()):
 
             parameter = self.parameters[par_name]
 
@@ -1087,7 +1087,7 @@ class Minimizer(object):
             p1log = False
             p2log = False
 
-            if 'log' in options.keys():
+            if 'log' in list(options.keys()):
 
                 assert len(options['log']) == n_dimensions, ("When specifying the 'log' option you have to provide a " +
                                                              "boolean for each dimension you are stepping on.")

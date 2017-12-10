@@ -335,7 +335,7 @@ class FermiLATLike(PluginPrototype):
                 return 1e5
             else:
                 # Update the value for the nuisance parameters
-                for par in self.nuisance_parameters.values():
+                for par in list(self.nuisance_parameters.values()):
                     newValue = self.getNuisanceParameterValue(par.name)
                     par.value = newValue
                 pass
@@ -482,7 +482,7 @@ class FermiLATLike(PluginPrototype):
             thisNamesV = pyLike.StringVector()
             thisSrc = self.like.logLike.getSource(srcName)
             thisSrc.spectrum().getFreeParamNames(thisNamesV)
-            thisNames = map(lambda x: "%s_%s" % (srcName, x), thisNamesV)
+            thisNames = ["%s_%s" % (srcName, x) for x in thisNamesV]
             freeParamNames.extend(thisNames)
         pass
 
